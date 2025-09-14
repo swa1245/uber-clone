@@ -1,4 +1,5 @@
 import user from "../models/user.js";
+import captain from "../models/captain.js";
 import type { Request, Response, NextFunction } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -28,7 +29,15 @@ export const authUser = async(req: Request, res: Response, next: NextFunction) =
             return res.status(401).json({ message: "Unauthorized" });
         }
         const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as DecodedToken;
-        req.user = await user.findById(decoded.id);
+        // Try to find the user in both user and captain collections
+        let foundUser = await user.findById(decoded.id);
+        
+        // If not found in user collection, try captain collection
+        if (!foundUser) {
+            foundUser = await captain.findById(decoded.id);
+        }
+        
+        req.user = foundUser;
         next();
     } catch (error) {
         return res.status(401).json({ message: "Unauthorized" });

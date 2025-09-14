@@ -4,6 +4,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import { connectDb } from './config/db.js';
 import userRouter from './routes/user.routes.js';
+import captainRouter from './routes/captain.routes.js';
 dotenv.config();
 const app = express();
 
@@ -11,6 +12,7 @@ app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 app.use('/api/users', userRouter);
+app.use('/api/captains', captainRouter);    
 connectDb();
 
 app.listen(process.env.PORT, () => {

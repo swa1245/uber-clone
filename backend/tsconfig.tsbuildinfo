@@ -1,1 +1,1 @@
-{"root":["./src/server.ts","./src/config/db.ts","./src/controllers/user.controller.ts","./src/middlewares/auth.middleware.ts","./src/models/user.ts","./src/routes/user.routes.ts"],"version":"5.9.2"}
+{"root":["./src/server.ts","./src/config/db.ts","./src/controllers/captain.controller.ts","./src/controllers/user.controller.ts","./src/middlewares/auth.middleware.ts","./src/models/captain.ts","./src/models/user.ts","./src/routes/captain.routes.ts","./src/routes/user.routes.ts"],"version":"5.9.2"}
